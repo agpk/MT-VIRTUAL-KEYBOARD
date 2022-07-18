@@ -8,13 +8,13 @@
 #define VER "0.2"
 #define SCHAR '#'
 #define VPOS 52
+char cc[MXLN];
 
 void OPEN_MT(char* dest, char* TEXT) {
   int initRot = M5.Lcd.getRotation();
   int initCX = M5.Lcd.getCursorX();
   int initCY = M5.Lcd.getCursorY();
-  char cc[MXLN];
-  int c=0,stck=0,m=1;
+  int c=0,stck=0,m=1,e=0;
   M5.Lcd.setTextSize(1);
   M5.Lcd.setRotation(3);
   while(true) {
@@ -44,7 +44,11 @@ void OPEN_MT(char* dest, char* TEXT) {
         }
       }
       else if(M5.BtnB.wasReleased()) {
-        c--;break;
+        if(e) {
+          c--;break;
+        } else {
+          e=1;
+        }
       }
       else if(M5.BtnA.pressedFor(500)) {
         if(c==strlen(MT_KEYS)-1) {
@@ -61,11 +65,13 @@ void OPEN_MT(char* dest, char* TEXT) {
         }
       }
       else if(M5.BtnB.pressedFor(1000)) {
-          M5.Lcd.fillScreen(BLACK);
-          M5.Lcd.setRotation(initRot);
-          M5.Lcd.setCursor(initCX,initCY);
-          strncpy(dest,cc,MXLN);
-          return;
+        M5.Lcd.fillScreen(BLACK);
+        M5.Lcd.setRotation(initRot);
+        M5.Lcd.setCursor(initCX,initCY);
+        strcpy(dest,cc); // not secure
+        memset(cc, 0, sizeof(cc));
+        delay(TYPEC);
+        return;
       }
     }
     if(c==strlen(MT_KEYS)) {
@@ -75,5 +81,5 @@ void OPEN_MT(char* dest, char* TEXT) {
       c=strlen(MT_KEYS)-1;
     }
   }
-  strncpy(dest,"NULL",MXLN);
+  strcpy(dest,"NULL");
 }
