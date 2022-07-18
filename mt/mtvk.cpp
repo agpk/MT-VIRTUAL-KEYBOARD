@@ -7,8 +7,6 @@
 #define VPOS 52
 
 void OPEN_MT(char* dest, char* TEXT) {
-  //char c[strlen(MT_KEYS)]=MT_KEYS;
-  //static int MXLN = sizeof(dest);
   int initRot = M5.Lcd.getRotation();
   int initCX = M5.Lcd.getCursorX();
   int initCY = M5.Lcd.getCursorY();
@@ -16,20 +14,16 @@ void OPEN_MT(char* dest, char* TEXT) {
   int c=0,stck=0,m=1;
   M5.Lcd.setTextSize(1);
   M5.Lcd.setRotation(3);
-  //M5.Lcd.printf("\n%d:%d",M5.Lcd.getCursorX(),M5.Lcd.getCursorY());
   while(true) {
-    //M5.update();
     char currChar = MT_KEYS[c];
     M5.Lcd.fillScreen(BLACK);
     M5.Lcd.setCursor(0,0);
     M5.Lcd.printf("Mt(c)virtual keyboard v%s\n%s",VER,TEXT);
     M5.Lcd.setCursor(0,VPOS/2);
     M5.Lcd.print(TRM);
-    //if(cc[0]!='\0') {
-      for(int i=0;i<strlen(cc);i++) {
-        M5.Lcd.print(cc[i]);
-      }
-    //}
+    for(int i=0;i<strlen(cc);i++) {
+      M5.Lcd.print(cc[i]);
+    }
     M5.Lcd.setCursor(0,VPOS);
     for(int i=0;i<strlen(MT_KEYS);i++) {
       if(i==c){
@@ -64,24 +58,11 @@ void OPEN_MT(char* dest, char* TEXT) {
         }
       }
       else if(M5.BtnB.pressedFor(1000)) {
-        //if(!strlen(cc)>=0xFF+1) {
-          //return "NULL";
-        //} else {
-        //if(!strlen(cc)>MXLN) {
           M5.Lcd.fillScreen(BLACK);
           M5.Lcd.setRotation(initRot);
           M5.Lcd.setCursor(initCX,initCY);
-          /*for(int i=0;i<strlen(cc);i++) {
-            dest[i]=cc[i];
-          }*/
-          //sprintf(dest,"%s",cc);
           strncpy(dest,cc,MXLN);
           return;
-        /*} else {
-          //sprintf(dest, "NULL");
-          strncpy(dest,"NULL1",0xFF);
-          return;
-        }*/
       }
     }
     if(c==strlen(MT_KEYS)) {
@@ -91,6 +72,5 @@ void OPEN_MT(char* dest, char* TEXT) {
       c=strlen(MT_KEYS)-1;
     }
   }
-  //sprintf(dest, "NULL");
   strncpy(dest,"NULL",MXLN);
 }
