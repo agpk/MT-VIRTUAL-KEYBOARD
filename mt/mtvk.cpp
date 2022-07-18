@@ -1,3 +1,5 @@
+//copyright(c) agpk - 2022
+//under the GPLv3 license
 #include <M5StickC.h>
 #define MT_KEYS "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.:;?!/\\_-()[]% <"
 #define MXLN 0xFF
