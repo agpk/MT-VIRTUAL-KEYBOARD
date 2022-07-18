@@ -2,6 +2,7 @@
 //under the GPLv3 license
 #include <M5StickC.h>
 #define MT_KEYS "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.:;?!/\\_-()[]% <"
+#define TYPEC 500
 #define MXLN 0xFF
 #define TRM "-- "
 #define VER "0.2"
@@ -50,13 +51,13 @@ void OPEN_MT(char* dest, char* TEXT) {
           if(stck!=0) {
             stck--;
             cc[stck]=0;m=0;
-            delay(500);break;
+            delay(TYPEC);break;
           }
         }
         else {
           cc[stck]=currChar;
           stck++;m=0;
-          delay(500);break;
+          delay(TYPEC);break;
         }
       }
       else if(M5.BtnB.pressedFor(1000)) {
