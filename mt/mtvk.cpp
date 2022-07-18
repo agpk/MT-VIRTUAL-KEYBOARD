@@ -29,7 +29,7 @@ void OPEN_MT(char* dest, char* TEXT) {
     }
     M5.Lcd.setCursor(0,VPOS);
     for(int i=0;i<strlen(MT_KEYS);i++) {
-      if(i==c){
+      if(i==c) {
         M5.Lcd.print(SCHAR);
       }
       else M5.Lcd.printf("%c",MT_KEYS[i]);
