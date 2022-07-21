@@ -60,9 +60,10 @@ void OPEN_MT(char* dest, char* TEXT) {
       }
       else if(M5.BtnA.pressedFor(500)) {
         if(c==strlen(MT_KEYS)-1) {
+          m=0;
           if(stck!=0) {
             stck--;
-            cc[stck]=0;m=0;
+            cc[stck]=0;
             delay(TYPEC);break;
           }
         }
